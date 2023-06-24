@@ -1,0 +1,26 @@
+
+*** React is single page application
+
+*** React can apply to any Element in the existing app that's why it's called Library
+
+*** React.createELement took 3 param React.createElement("Element", {attribute}, "Content")
+   React.createElement("h1", {id:"h1"}, "hello world")
+
+*** We can use React in any project using CDN Link
+
+*** React Hosted on CDN
+
+*** React.createELement create React Element Object Not HTML 
+
+*** render() method will take this object and will convert in HTML Tag 
+
+*** react.development.js is responsible for core feature for React
+
+*** react-dom.development.js is responsible for DOM related Operation
+ 
+*** <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+*** <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+*** Above 2 different file one is for core feature of React and another one for DOM
+
+*** Suppose we are working on mobile app that time react-dom file not required. we need only react.development that's why both file are seprate

@@ -1,0 +1,215 @@
+=================================================================
+EPISODE 4
+=================================================================
+
+Header
+    Logo
+    Nav
+Body
+    Search
+    Restaurant
+        RestaurantCard
+Footer
+    Copyright
+    Links
+    Address
+    Constact  
+
+*** Config Driven UI
+    *** UI that driven by Config
+
+*** key
+    Always provide key if you are using map or similar operation like
+    To Avoid rerender (if we will not provide key it will rerender all element)  
+    if we will provide key it will not rerender all element
+    Never use index as a key (React never prefer index as a key. check in react doc)
+    if we don't have unique id that case we can use index but not recommended   
+
+====================================================
+EPISODE 5
+====================================================
+
+*** React Folder Structure
+    *** https://legacy.reactjs.org/docs/faq-structure.html
+
+*** Extension of file
+    *** We can use (.js, .jsx, .tsx)
+    *** Prefer use .js
+
+*** File name
+    *** Componenet name will in Upper CamelCase (RestaurantCard.js)
+    *** utils files in lower camelCase (mockData.js)
+
+
+*** Export
+    *** Module can not have multiple "default export"
+    *** If we have to export multle (named export)
+        *** export const CDN_URL = "<URL>"
+        *** export const LOGO_URL = "<URL>" 
+
+*** Import 
+    *** Default Import 
+        ***    
+    *** Named Import (used {})
+        *** import {CDN_URL} from "path" 
+
+*** State
+    *** 
+
+*** Hooks
+    *** React hook is a normal JS function
+    *** Prebuild function 
+    *** Two Very Important Hooks (useState(), useEffect())
+    *** useState 
+        *** Maximum use this Hooks almost 80%
+        *** It maintain state 
+        *** Whenever state variable update, React re-render componenet 
+        *** useState(null), useState({}), useState([])
+        *** Whenever we call setMethodName it starts rerender componenet (during this time will do comparision old and new Virtual DOM)
+        *** always call this inside your function component
+        *** tried to call this on the top 
+        *** never create useState inside condition (if/else etc) code. it's valid but don't do this. it will create inconsistancy
+        *** never create this inside forloop and inside inner function. call always in main function on top
+    
+    *** useEffect (After componenet render it will trigger) 
+        *** We used almost 20%   
+        *** Two param callback function and 2nd param is dependency array
+            const [btnNameReact, setBtnNameReact] = useState("Login");
+            useEffect(()=>{
+                console.log("use effect header");
+            },[])
+
+        *** if no dependency array that means useEffect will call on every component render 
+        *** if dependency array is empty, useEffect will call only initial componenet render (just once)
+        *** if dependency array is [btnNameReact]. it will called everytime btnNameReact is updated   
+
+*** NOTE
+    *** React perfom DOM operation very fast which is makes it fast as compare to others
+    *** React sync Data with UI 
+    *** Reconciliation Algo (React Fiber) came in React 16 to update the DOM which makes DOM operation is fast and thats why react is fast.
+    *** https://github.com/acdlite/react-fiber-architecture
+    *** Virtual DOM is a representation of Actual DOM
+        *** ReactElement is Virtual DOM  
+        *** Virtual DOM is nothing just JS Object (Please check below example)
+        *** Exa
+            *** const heading = React.createElement("h1",{},"Hello World Reactttt");
+            *** console.log(heading) // will console Object
+    *** Actual DOM is all HTML Element 
+
+    *** Diff Algo 
+        *** It finds differenece b/w Old and New virtual Dom
+
+====================================================
+EPISODE 6
+====================================================   
+
+Monolothic architecture vs Microservices architecture
+
+There are 2 way to render the Data
+
+*** Way 1
+    *** Loads App -> API (will not render data untill API success) -> render
+
+*** Way 2
+    *** Loads App ->  Render (with shimmer UI) -> API (will take some time to success API) -> Render with actual response (Best Way)
+
+*** fetch is not JS feature it's browser feature
+
+*** A shimmer UI resembles the page's actual UI, so users will understand how quickly the web or mobile app will load even before the content has shown up.
+    *** It will show some dummy cards untill we are not getting response
+    *** https://tyler-technologies.github.io/design-guide-gallery/shimmer
+
+*** const [listOfRes, setListOfRes] = useState([]);
+    *** why we are not defining listOfRes = [];
+    *** After API success, suppose we add data in listOfRes but it will not update in HTML. to avoid this issue we use useState 
+    *** we have to update component dynamic that's why we used useState, so it could update all places
+    *** like changeDetection in Angular, if we will update var in ts file it will update in html file almost
+    *** after updating value using setListOfRes, will render the complete component, but it will compare previous dom and new dom and it will update only listOfRes section instead of whole HTML of that particular component by using diff algo
+    *** whenever state variable update, react triggers a Reconciliation cycle(it rerender the componenet)
+
+====================================================
+EPISODE 7
+==================================================== 
+
+*** whenever we import and that start with use, that means we are importing hooks
+
+useEffect:-
+    *** Two param callback function and 2nd param is dependency array
+    const [btnNameReact, setBtnNameReact] = useState("Login");
+    useEffect(()=>{
+        console.log("use effect header");
+    },[])
+
+    *** if no dependency array that means useEffect will call on every component render 
+    *** if dependency array is empty, useEffect will call only initial componenet render (just once)
+    *** if dependency array is [btnNameReact]. it will called everytime btnNameReact is updated 
+
+useState:- 
+    *** always call this inside your function component
+    *** tried to call this on the top 
+    *** never create useState inside condition (if/else etc) code. it's valid but don't do this. it will create inconsistancy
+    *** never create this inside forloop and inside inner function. call always in main function on top
+
+Routing:- 
+    *** Types of Routing in WebApp
+        *** Client side (we ae not making any network call, everything is loaded)
+        *** Server side (Reload the whole page, like we did earlier wordpress)
+    *** https://reactrouter.com/en/main
+    *** npm i react-router-dom
+    *** app.js  
+        import {createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
+
+        *** Outlet
+        <div className="app">
+            <Header />
+            <Outlet />
+        </div>
+
+        *** Configuration
+        const appRouter = createBrowserRouter([
+            {
+                path:"/",
+                element:<AppLayout />,
+                children:[
+                {
+                    path:"/",
+                    element:<Body />
+                },
+                {
+                    path:"/about",
+                    element:<About />
+                },
+                {
+                    path:"/contact",
+                    element:<Contact /> 
+                },
+                {
+                    path:"/restaurant/:resId",
+                    element:<RestaurantMenu />
+                }
+                ],
+                errorElement: <Error />
+            }
+        ])
+    *** RouterProvider => provide routing configuration for our app   
+    *** createBrowserRouter => create routing path 
+    *** root.render(<RouterProvider  router={appRouter}/>);
+
+    *** error componenet
+        *** import { useRouteError } from "react-router-dom";
+        const Error = () => {
+            const err = useRouteError();
+            console.log(err);
+            return (
+                <div>
+                    <h1>{err.error.message}</h1>
+                </div>
+            )
+        }
+
+    *** Header component        
+        *** import { Link} from "react-router-dom";
+        *** <Link to="/about">About Us</Link>
+        *** <Link to="/">Home</Link>  
+        *** <Link to={'/restaurant/'+id}><h3>{name}</h3></Link> // path:"/restaurant/:resId",
+        *** In DOM, Link will not show, anchor tag will be there 

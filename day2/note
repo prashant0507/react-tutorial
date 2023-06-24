@@ -1,0 +1,90 @@
+*** NPM is not only Node Package Manager
+
+*** NPM doesn't have full form
+
+*** It's manage the package but can't say Node Package Manager
+
+*** npm init (npm init -y => skip few thing)
+
+*** package.json (configuration for npm)
+
+*** bundler most important package to compress and clean your code (webpack, parcel are bundler)
+
+*** npm i package_name
+
+*** npm i -D parcel (-D stand for Dev Dependency)
+
+*** Dev Dependency :- Required only for development phase
+
+*** Normal Dependency :- It's used on Production also 
+
+*** caret and tilde
+
+*** caret ^2.8.3 =>  caret means, parcel will automatically update minor version (2.8.4 => minor)
+    *** if you will remove caret, it will not update version same for tilde
+
+*** tilde ~2.8.3 =>  tilde means, parcel will automatically update major version (don't use tilde) (3.8.4 => major)
+
+*** package-lock.json :- 
+    *** Track exact verion 
+    *** Maintain exact veriosn of package 
+    *** integrity :- it's ensure same version should be on local and server
+    *** We should commit package.json and package.lock.json file
+    *** if you will not upload package-lock.json file it will regenrate with new key of Integrity, so in this Integrity value will be different from your local machine. sometime we notice on local machine project works and we got issue on server this happend because of Integrity key 
+
+*** Transitive dependency => parcel has own dependency and those dependency has their own dependency and so on this is called Transitive dependency
+
+*** parcel use Bebel
+
+*** node_module/parcel => parcel has their own package.json, so we can say in one project will have multiple package-json
+
+*** .gitignore => skip file for track (/node_modules)
+
+*** npx parcel index.html (npx is help to execute parcel package)
+
+*** npx parcel build index.html (prod build and move to dist folder)
+
+*** After Dev Build, Server will fetch data from dist folder 
+
+*** Bundle the app and hosted on server and also create server 
+
+*** npm install react
+
+*** npm install react-dom
+
+*** <script type="module" src="./App.js"></script> => consider this App.js file as a module instead of normal js file and also use for Differential bundling
+
+*** Parcel
+    *** https://parceljs.org/
+    *** After save parcel will refresh the page (by help HMR)
+    *** Provide Dev Build
+    *** Provide Local server
+    *** HMR => HOt Module Replacement
+    *** Parcel use File Watching Algorithm - written in c++
+    *** Faster Build using Caching (.parcel-cache folder)
+    *** Remove .parcel-cache folder and stop server. once you start again this folder will create again
+    *** Image Optimization
+    *** Minification of files for Production relase
+    *** Bundling
+    *** Compress files
+    *** Parcel use some other Lib for image optimization etc.   
+    *** Consistent Hashing (please read)
+    *** Differential Bundling (Browser based, support older version)
+    *** Code Splitting (Please read)
+    *** Diagnostic
+    *** Error Handling (Provide error in good way)
+    *** By use Parcel we can use https://
+    *** Tree Shaking Algorithm (remove unused code)
+    *** Different Dev and Prod bundles
+
+ *** MORE IMPORTANT
+    *** Remove from package.json   "main": "App.js",
+
+*** Browserlist
+    *** https://browserslist.dev/
+    "browserslist": [
+        "last 10 Chrome version",
+        "last 2 Firefox version"
+    ]  
+    *** definately it will work above mentioned veriosn
+    *** it will support other version also but might be not work  

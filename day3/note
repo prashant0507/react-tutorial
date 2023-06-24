@@ -1,0 +1,90 @@
+*** TOPICS
+    *** JSX
+    *** Babel   
+    *** Functional Componenet
+    *** Use React Element in Componenet
+    *** Use React Element in another Element
+    *** Use one componenet in to another one 
+    **  Use Componenet into React Element 
+    *** Use JS code in JSX
+    *** React Fragment 
+
+
+*** "start": "parcel index.html" (package.json )
+*** "start": "parcel index.html && parcel watch index.html" (package.json, in case UI is not updating )
+*** "build": "parcel build index.html" (package.json)
+
+*** npm run start || npm start (only work for start server not in other case)
+*** npm run build 
+
+*** NOTE
+const heading = React.createElement("h1", {id:"heading"}, "Namaste React");
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(heading);
+
+Above way is not friendly for complex structure, to avoid these issue JSX comes in the picture 
+
+*** JSX is not part of React
+    *** JSX is not part of React
+    *** JSX is not HTML in JS
+    *** JSX is HTML like Syntax
+    *** JSX code first will convert in ReactElement
+    *** Babel is converting JSX code to ReactElement
+    *** use camelCase for attribute exa : className, tabIndex
+    *** If you writing JSX code in signle line no need ()
+    *** For Multiple lines it's mandatory to use ()
+    *** Single Root Element / One Parent Element
+    
+
+*** NOTE 
+    *** Inside JSX using {} we can write JS code  
+    *** {} -> automatically sanitize data so don't wry abount malicious code   
+
+*** JS Engine not understand JSX Syntax
+*** JS Engine understand EcmaScript only
+*** Parcel is doing job behind the scene (Transpile JSX code before it reaches to JS Engine)
+*** Babel help to transpile the code
+*** Babel is Transpiler / Compiler
+*** Babel is converting JSX code to ReactElement
+*** https://babeljs.io/
+*** Babel transpile to ES6 code that older browser can understand
+
+*** React.createElement => ReactElement - JS Object => HTMLElement(render) => (Without JSX)
+    *** const heading = React.createElement("h1", {id:"heading"}, "Namaste React");
+
+*** JSX => React.createElement => ReactElement - JS Object => HTMLElement(render) => (with JSX)
+    *** const jxHeading = <h1 id="heading">Namste Using JSX</h1>
+
+*** Component
+    *** Class Based Component - Old way
+    *** Function Componenet - New way
+
+*** Functional Component
+    *** A function which return some piece of JSX
+    *** Just a normal JS Function
+    *** Fisrt letter shold be in Capital case
+    *** Use always Arrow function (avoid normal function)
+
+*** render  
+    *** Element Render => root.render(jxHeading2);
+    *** Component Render => root.render(<HeadingComponenet />);
+
+*** Componenet Composition
+    *** Call one component into another one
+
+*** React Fragment (kind of ng-container)
+    *** Wrap the Element. it behave like empty tag
+        exa  :- 
+        <React.fragment>
+            <div></div>
+            <div></div>
+        </React.fragment> 
+    *** No need to wrap child element by any html element just use Fragment      
+    *** We can use empty tag (shorthand of Fragment tag)
+        <>
+            <div></div>
+            <div></div>
+        </> 
+
+*** can we have multiple root.render ?         
+
