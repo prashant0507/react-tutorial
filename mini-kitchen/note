@@ -213,3 +213,53 @@ Routing:-
         *** <Link to="/">Home</Link>  
         *** <Link to={'/restaurant/'+id}><h3>{name}</h3></Link> // path:"/restaurant/:resId",
         *** In DOM, Link will not show, anchor tag will be there 
+
+
+====================================================
+EPISODE 8
+====================================================
+
+Mounting or Invoking function => You are loading function on web page
+
+Creating Instance of a Class => 
+* Loading a class based componenet on a web page meanse we are creating instance of a Class
+* Earlier we don't have hooks for state
+* Never update state variable directly
+* After initiating class, constructor will call before render() method
+* when the componenet already monunt on the browser thn componentDidMount will call
+* Order of calling 
+    * constructor => render => componentDidMount (After mounting this will call)
+
+
+componentDidMount (similar to useEffect):- 
+    * make API call inside this  
+    * why we call API here => 
+        As we know  (Loads App ->  Render (with shimmer UI) -> API -> Render with the actual response)
+        this the best way to render. componentDidMount will trigger after render method and now we have to call API, that's why we call API inside this
+
+lifecycle :
+ https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+ There are 2 phases
+    * Render (constructor and render will trigger, reconcilation will happen here)
+    * Commit (Actual Dom Update)       
+
+Render Operation
+    parent constructor
+    parent render
+
+    111 Prashant Shrivastavaaaa  =>> child constructor
+    111 Prashant Shrivastavaaaa  =>> child component render
+
+    222 Prashant Shrivastavaaaa  =>> child constructor
+    222 Prashant Shrivastavaaaa  =>> child component render
+
+React will optimiza here, React will merge render phase of both child and commit phase will happen together
+
+Commit
+    111 Prashant Shrivastavaaaa  =>> child componenet did mount
+    222 Prashant Shrivastavaaaa  =>> child componenet did mount
+
+    parent componenet did mount
+
+

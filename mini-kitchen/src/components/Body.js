@@ -16,6 +16,16 @@ const Body = () => {
   useEffect(() => {
     //console.log("usewffect callback");
     fetchData();
+
+    // let time = setInterval(()=>{
+    //   console.log("body interval");
+    // }, 1000);
+
+    return () => { // It will behave like unmounting phase
+      console.log("use effect return");
+      //clearInterval(time);
+    }
+
   }, []);
 
   const fetchData = async () => {
