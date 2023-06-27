@@ -263,3 +263,18 @@ Commit
     parent componenet did mount
 
 
+====================================================
+EPISODE 9 => Optimizing App
+====================================================
+Single Responsibility prinicpal => 
+    * each componenet should have a single responsobility
+    * modularizing the code
+    * keep your componenet as light as you can create
+    * like header, RestaurantCard etc
+    * It will increase resuablity
+    * maintable 
+    * testable
+
+Custom Hooks => 
+    * Hooks are utility function
+    *  
