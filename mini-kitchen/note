@@ -266,15 +266,20 @@ Commit
 ====================================================
 EPISODE 9 => Optimizing App
 ====================================================
-Single Responsibility prinicpal => 
+Single Responsibility prinicpal =>  
     * each componenet should have a single responsobility
     * modularizing the code
     * keep your componenet as light as you can create
     * like header, RestaurantCard etc
     * It will increase resuablity
-    * maintable 
-    * testable
+    * your code become maintable 
+    * your code become testable
+
+Code Spliting / Chunking / Lazy Loading / Dynamic Loading /  Dynamic Bundling / on demand Loading
+    * Break your application in multiple Bundle    
 
 Custom Hooks => 
     * Hooks are utility function
-    *  
+    * Always start Hooks name with use like useRestaurantMenu.js (use is not mandatory but it's recommended)
+    * We can create utils folder under src, there we can keep hooks
+    * Create seprate file for seprate hooks

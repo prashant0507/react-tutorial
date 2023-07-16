@@ -4,6 +4,7 @@ import RestaurantCard from "./RestaurantCard"; // Default Import
 import responseList from "../utils/mockData";
 import Shimmer from "./Shimmer";
 import {Link} from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   // Create state variable
@@ -58,6 +59,14 @@ const Body = () => {
     console.log("output", resAfterSearch);
     setFilterRes(resAfterSearch);
   };
+
+  // Integrating custom hooks Episode 9
+  const onlineStatus = useOnlineStatus();
+  if(!onlineStatus) {
+    return (
+      <h1>Please check your internet connection</h1>
+    )
+  }
 
   return listOfRes.length === 0 ? (
     <Shimmer />

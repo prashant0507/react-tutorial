@@ -9,7 +9,7 @@ const RestaurantMenu = () => {
   const {resId} = useParams();
   console.log('params', resId);
 
-  const restMenu = useRestaurantMenu(resId);
+  const restMenu = useRestaurantMenu(resId); // Single Responsibility prinicpal, Episode 9 
   console.log("restMenu==>>>", restMenu);
 
   // useEffect(() => {
