@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"; // Named Import
 import RestaurantCard from "./RestaurantCard"; // Default Import
 import responseList from "../utils/mockData";
 import Shimmer from "./Shimmer";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
@@ -32,13 +32,18 @@ const Body = () => {
   const fetchData = async () => {
     const data = await fetch(
       // fetch will return promise
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.6083842&lng=73.7588178&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
 
     const json = await data.json();
+    console.log("json=>>>", json);
     // optional chaining json?.data?.cards[2]?.data?.data?.cards
-    setListOfRes(json.data.cards[2].data.data.cards);
-    setFilterRes(json.data.cards[2].data.data.cards);
+    // setListOfRes(json.data.cards[2].data.data.cards);
+    // setFilterRes(json.data.cards[2].data.data.cards);
+
+    setListOfRes(json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants);
+    setFilterRes(json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants);
+    console.log("listOfRes=>>>>", json.data.cards[2].card.card.gridElements.infoWithStyle.restaurants);
   };
 
   //console.log("rendered called"); // It will console first, after that componenet and then useEffect
@@ -54,7 +59,7 @@ const Body = () => {
 
   const getRecordAfterSearch = () => {
     let resAfterSearch = listOfRes.filter(elem => {
-      return elem.data.name.toLowerCase().includes(searchText.toLowerCase());
+      return elem.info.name.toLowerCase().includes(searchText.toLowerCase());
     });
     console.log("output", resAfterSearch);
     setFilterRes(resAfterSearch);
@@ -62,7 +67,7 @@ const Body = () => {
 
   // Integrating custom hooks Episode 9
   const onlineStatus = useOnlineStatus();
-  if(!onlineStatus) {
+  if (!onlineStatus) {
     return (
       <h1>Please check your internet connection</h1>
     )
@@ -73,36 +78,38 @@ const Body = () => {
   ) : (
     <div className="body">
       {/* Search and filter start*/}
-      <div className="filter">
-        <div className="search-container">
+      <div className="filter flex">
+        <div className="search-container m-4 p-4">
           <input
             type="text"
-            className="search-box"
+            className="border border-solid border-black"
             onChange={e => allowTyping(e.target.value)}
             value={searchText}
           />
-          <button onClick={() => getRecordAfterSearch()}>Search</button>
+          <button className="px-4 py-2 bg-green-100 m-4 rounded-lg" onClick={() => getRecordAfterSearch()}>Search</button>
         </div>
-        <button
-          className="filter-btn"
-          onClick={() => {
-            const filteredList = listOfRes.filter(res => {
-              return res.data.avgRating > 4;
-            });
-            console.log("filteredList", filteredList);
-            setFilterRes(filteredList);
-          }}
-        >
-          Top Rated Restaurant
-        </button>
+        <div className="m-4 p-4 flex items-center">
+          <button
+            className="px-4 py-2 bg-green-100 rounded-lg"
+            onClick={() => {
+              const filteredList = listOfRes.filter(res => {
+                return res.info.avgRating > 4;
+              });
+              console.log("filteredList", filteredList);
+              setFilterRes(filteredList);
+            }}
+          >
+            Top Rated Restaurant
+          </button>
+        </div>
       </div>
       {/* Search and filter end*/}
 
       {/* Grid part start */}
-      <div className="res-container">
+      <div className="res-container flex flex-wrap">
         {filterRes.map(res => {
           //return <RestaurantCard key={res.data.id} resObj={res} />;
-          return <Link className="res-card-box" key={res.data.id} to={'/restaurant/'+res.data.id}><RestaurantCard resObj={res} /></Link>;
+          return <Link className="res-card-box" key={res.info.id} to={'/restaurant/' + res.info.id}><RestaurantCard resObj={res} /></Link>;
         })}
       </div>
       {/* Grid part end */}

@@ -283,3 +283,28 @@ Custom Hooks =>
     * Always start Hooks name with use like useRestaurantMenu.js (use is not mandatory but it's recommended)
     * We can create utils folder under src, there we can keep hooks
     * Create seprate file for seprate hooks
+
+====================================================
+EPISODE 10 => Jo dikhta hai wo bikta hai
+====================================================
+How many way to write css
+* styled-components.com
+* Mateial UI
+* Telwind Ui 
+* Chakra UI
+* Bootstrap
+* ant.design (2nd most popular)
+
+How to use Tailwind 
+    * Go to https://tailwindcss.com/docs/installation/framework-guides
+    * Choose parcel
+    * npm install -D tailwindcss postcss (https://postcss.org/)
+    * npx tailwindcss init
+        * This command will create tailwind.config.js file
+    * create new file on root    
+        * .postcssrc (it's used to understand tailwind)
+    * VS code addon
+        * Tailwind CSS IntelliSense
+        * ctrl+space if suggestion is not coming    
+    
+

@@ -15,12 +15,12 @@ const RestaurantCard = props => {
     cuisines,
     avgRating,
     costForTwo
-  } = resObj.data;
+  } = resObj.info;
   return (
-    <div className="res-card" style={styleCard}>
-      <img src={CDN_URL + cloudinaryImageId} />
-      <h3 className="hotel-name">{name}</h3>
-      <h4 className="hotel-cuisine">{cuisines.join(",")}</h4>
+    <div className="m-4 p-4 w-[250px] rounded-lg bg-gray-50 hover:bg-pink-50" style={styleCard}>
+      <img className="rounded-lg" src={CDN_URL + cloudinaryImageId} />
+      <h3 className="hotel-name font-bold py-4">{name}</h3>
+      <h4 className="hotel-cuisine text-ellipsis overflow-hidden">{cuisines.join(",")}</h4>
       <div className="star-two">
         <h4 className="hotel-star">{avgRating} Star</h4>
         <h4 className="hotel-costtwo">{costForTwo / 100} for Two</h4>
