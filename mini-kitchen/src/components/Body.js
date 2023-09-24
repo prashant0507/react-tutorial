@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"; // Named Import
 
-import RestaurantCard from "./RestaurantCard"; // Default Import
+import RestaurantCard, { restaurantCardWithPromotedLabel } from "./RestaurantCard"; // Default Import
 import responseList from "../utils/mockData";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -13,6 +13,9 @@ const Body = () => {
   const [filterRes, setFilterRes] = useState([]);
 
   const [searchText, setSerachText] = useState("");
+
+  const RestaurantCardPromoted = restaurantCardWithPromotedLabel(RestaurantCard);
+
   // After component render it will trigger
   useEffect(() => {
     //console.log("usewffect callback");
@@ -109,7 +112,11 @@ const Body = () => {
       <div className="res-container flex flex-wrap">
         {filterRes.map(res => {
           //return <RestaurantCard key={res.data.id} resObj={res} />;
-          return <Link className="res-card-box" key={res.info.id} to={'/restaurant/' + res.info.id}><RestaurantCard resObj={res} /></Link>;
+          return (
+          <Link className="res-card-box" key={res.info.id} to={'/restaurant/' + res.info.id}>
+            { res.info.avgRating > 4.3 ? <RestaurantCardPromoted resObj={res} /> : <RestaurantCard resObj={res} /> }
+          </Link>
+          );
         })}
       </div>
       {/* Grid part end */}

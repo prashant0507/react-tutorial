@@ -305,6 +305,13 @@ How to use Tailwind
         * .postcssrc (it's used to understand tailwind)
     * VS code addon
         * Tailwind CSS IntelliSense
-        * ctrl+space if suggestion is not coming    
+        * ctrl+space if suggestion is not coming   
+    * Commit url => https://github.com/prashant0507/react-tutorial/commit/363bdb2629b0fff5cca04af952363eb91bc2325a#diff-95170c7e210077013f5b8f4cd05a6af99f9ef06293fe98677ed971f5a5a283dc     
     
-
+====================================================
+EPISODE 11 => Data is the new oil
+====================================================
+* Higher Order Component
+    * it  is a function that takes a componenet and returns a componenet
+    * Takes a componenet as a input and then enhanced and return back
+    * Higher order is a pure function
